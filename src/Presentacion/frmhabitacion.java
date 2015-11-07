@@ -8,16 +8,17 @@ package Presentacion;
 import Datos.vhabitacion;
 import Logica.fhabitacion;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Frander
  */
-public class frmhabitacion extends javax.swing.JFrame {
+public class frmhabitacion extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form frmhabitacion
-     */
+ 
+    
+    
     public frmhabitacion() {
         initComponents();
         
@@ -27,13 +28,14 @@ public class frmhabitacion extends javax.swing.JFrame {
         
     }
 
-    private String accion = "guardar";
+    private String accion="guardar";
 
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
+    
 
     void inhabilitar() {
         txtidhabitacion.setVisible(false);
@@ -80,8 +82,8 @@ public class frmhabitacion extends javax.swing.JFrame {
 
     void mostrar(String buscar) {
         try {
-            DefaultTablemodel modelo;
-            fhabitacion func = new fhabitacion();
+            DefaultTableModel modelo;
+            fhabitacion func= new fhabitacion();
             modelo = func.mostrar(buscar);
 
             tablalistado.setModel(modelo);
@@ -92,7 +94,7 @@ public class frmhabitacion extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
-
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -129,7 +131,10 @@ public class frmhabitacion extends javax.swing.JFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Habitacion");
@@ -194,7 +199,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         cbotipo_habitacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Individual", "Matrimonial", "Familiar", "Presidencial" }));
 
         btnnuevo.setBackground(new java.awt.Color(153, 153, 153));
-        btnnuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnnuevo.setForeground(new java.awt.Color(0, 0, 204));
         btnnuevo.setText("NUEVO");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +208,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         });
 
         btnguardar.setBackground(new java.awt.Color(153, 153, 153));
-        btnguardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnguardar.setForeground(new java.awt.Color(0, 0, 204));
         btnguardar.setText("GUARDAR");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +217,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         });
 
         btncancelar.setBackground(new java.awt.Color(153, 153, 153));
-        btncancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btncancelar.setForeground(new java.awt.Color(0, 0, 204));
         btncancelar.setText("CANCELAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -325,7 +330,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         jLabel9.setText("BUSCAR");
 
         btnbuscar.setBackground(new java.awt.Color(153, 153, 153));
-        btnbuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnbuscar.setForeground(new java.awt.Color(0, 0, 204));
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,7 +339,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         });
 
         btneliminar.setBackground(new java.awt.Color(153, 153, 153));
-        btneliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminar.setForeground(new java.awt.Color(0, 0, 204));
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,7 +348,7 @@ public class frmhabitacion extends javax.swing.JFrame {
         });
 
         btnsalir.setBackground(new java.awt.Color(153, 153, 153));
-        btnsalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnsalir.setForeground(new java.awt.Color(0, 0, 204));
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,12 +429,13 @@ public class frmhabitacion extends javax.swing.JFrame {
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
         habilitar();
-        btnguardar.setText("Guardar");
-        accion = "guardar";
+        btnguardar.setText("GUARDAR");
+        accion="guardar";
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
+        
         if (txtnumero.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes ingresar un numero de habitación");
             txtnumero.requestFocus();
@@ -450,13 +456,14 @@ public class frmhabitacion extends javax.swing.JFrame {
             txtcaracteristicas.requestFocus();
             return;
         }
-
-        vhabitacion dts = new vhabitacion();
-        fhabitacion func = new fhabitacion();
+       
+    
+        vhabitacion dts =new vhabitacion();
+        fhabitacion func =new fhabitacion();
 
         dts.setNumero(txtnumero.getText());
 
-        int seleccionado = cbopiso.getSelectedIndex();
+        int seleccionado=cbopiso.getSelectedIndex();
         dts.getPiso((String) cbopiso.getItemAt(seleccionado));
 
         dts.setDescripcion(txtdescripcion.getText());
@@ -464,14 +471,15 @@ public class frmhabitacion extends javax.swing.JFrame {
 
         dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
 
-        seleccionado = cboestado.getSelectedIndex();
+        seleccionado=cboestado.getSelectedIndex();
         dts.getEstado((String) cboestado.getItemAt(seleccionado));
 
-        seleccionado = cbotipo_habitacion.getSelectedIndex();
+        seleccionado=cbotipo_habitacion.getSelectedIndex();
         dts.getTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
         
         
         if (accion.equals("guardar")) {
+       
             if (func.insertar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La habitación fue registrada satisfactoriamente");
                 mostrar("");

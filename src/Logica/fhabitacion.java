@@ -2,9 +2,12 @@
 package Logica;
 
 import Datos.vhabitacion;
-import com.mysql.jdbc.Connection;
-import java.beans.Statement;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,17 +22,17 @@ public class fhabitacion {
     public DefaultTableModel mostrar(String buscar){
         DefaultTableModel modelo;
         
-    String [] titulos = ("ID","Numero","piso","Descripcion","Caracteristicas","Precio","Estado","Tipo habitacion");
+    String [] titulos = {"ID","Numero","piso","Descripcion","Caracteristicas","Precio","Estado","Tipo habitacion"};
     
     String [] registro =new String [8];
     
     totalregistros=0;
     modelo = new DefaultTableModel(null,titulos);
     
-    sSQL="select * from habitacion  where pisos like '%"+ buscar + "%' order by idhabitacion" ;
+    sSQL="select * from habitacion  where piso like '%"+ buscar + "%' order by idhabitacion";
     
         try {
-            Statement st= cn.createStatement();
+            Statement st= (Statement) cn.createStatement();
             ResultSet rs=st.executeQuery(sSQL);
             
             
@@ -59,13 +62,59 @@ public class fhabitacion {
             
     
     }
-      
+    
+    public DefaultTableModel mostrarvista(String buscar){
+        DefaultTableModel modelo;
+        
+    String [] titulos = {"ID","Numero","piso","Descripcion","Caracteristicas","Precio","Estado","Tipo habitacion"};
+    
+    String [] registro =new String [8];
+    
+    totalregistros=0;
+    modelo = new DefaultTableModel(null,titulos);
+    
+    sSQL="select * from habitacion  where piso like '%"+ buscar + "%'and estado='Disponible' order by idhabitacion";
+    
+        try {
+            Statement st= (Statement) cn.createStatement();
+            ResultSet rs=st.executeQuery(sSQL);
+            
+            
+            while (rs.next()){
+                registro[0]=rs.getString("idhabitacion");
+                registro[1]=rs.getString("numero");
+                registro[2]=rs.getString("piso");
+                registro[3]=rs.getString("descripcion");
+                registro[4]=rs.getString("caracteristicas");
+                registro[5]=rs.getString("precio_diario");
+                registro[6]=rs.getString("registro");
+                registro[7]=rs.getString("tipo_habitacion");
+                
+                totalregistros=totalregistros+1;
+                
+                modelo.addRow(registro);            
+            }
+         return modelo;
+         
+                    
+                 
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+            
+    
+    }
+    
+     
     public boolean insertar (vhabitacion dts){
         sSQL="insert into habitacion (numero,piso,descripcion,caracteristicas,precio_diario,estado,tipo_habitacion) " +
                 "values (?,?,?,?,?,?,?)";
+        
         try {
             
-            PreparedStatement pst=cn.preparedStatement (sSQL);
+            PreparedStatement pst=cn.prepareStatement(sSQL);
             pst.setString(1, dts.getNumero());
             pst.setString(2, dts.getPiso());
             pst.setString(3, dts.getDescripcion());
@@ -98,7 +147,7 @@ public class fhabitacion {
                  " where idhabitacion=?,";
          
         try {
-            PreparedStatement pst=cn.preparedStatement (sSQL);
+             PreparedStatement pst=cn.prepareStatement(sSQL);
             pst.setString(1, dts.getNumero());
             pst.setString(2, dts.getPiso());
             pst.setString(3, dts.getDescripcion());
@@ -126,13 +175,69 @@ public class fhabitacion {
             
         }
  
-    }      
+    }   
+     public boolean desocupar (vhabitacion dts){
+         sSQL="Update habitacion set estado='disponible'" +
+                 " where idhabitacion=?,";
+         
+        try {
+             PreparedStatement pst=cn.prepareStatement(sSQL);
+        
+            pst.setInt(1, dts.getIdhabitacion());
+            
+            int n=pst.executeUpdate();
+            
+            if (n!=0){
+                return true;
+            }
+            else {
+                return false;
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            
+            return false;
+                   
+            
+        }
+ 
+    }   
+     public boolean ocupar (vhabitacion dts){
+         sSQL="Update habitacion set estado='ocupado'" +
+                 " where idhabitacion=?,";
+         
+        try {
+             PreparedStatement pst=cn.prepareStatement(sSQL);
+        
+            pst.setInt(1, dts.getIdhabitacion());
+            
+            int n=pst.executeUpdate();
+            
+            if (n!=0){
+                return true;
+            }
+            else {
+                return false;
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            
+            return false;
+                   
+            
+        }
+ 
+    } 
     
         public boolean eliminar (vhabitacion dts){
             sSQL="delete from habitacion where idhabitacion=?";
             
         try {
-            PreparedStatement pst=cn.preparedStatement (sSQL);
+           PreparedStatement pst=cn.prepareStatement(sSQL);
            
             pst.setInt(1, dts.getIdhabitacion());
             
@@ -153,10 +258,6 @@ public class fhabitacion {
         }
  
     }
-
-
-
-
 
 
 

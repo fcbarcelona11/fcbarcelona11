@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class conexion {
     public String db="basereserva";
-    public String url="jdbc:mysql;//127.0.0.1/" + db;
+    public String url="jdbc:mysql://127.0.0.1/" + db;
     //ese numero 127.0.0.1 es la ip de la base de datos...video03
    public String user="root";
    public String pass="";
@@ -20,7 +20,7 @@ public class conexion {
        
         try {
            Class.forName("org.gjt.mm.mysql.Driver");
-           link=(Connection) DriverManager.getConnection(this.url, this.user, this.pass);
+           link= (Connection) DriverManager.getConnection(this.url, this.user, this.pass);
            
            //connection no estaba hay que borrar
        } catch (ClassNotFoundException | SQLException e) {
