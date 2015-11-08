@@ -90,17 +90,7 @@ public class vhabitacion {
         this.tipo_habitacion = tipo_habitacion;
     }
 
-    public void getPiso(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void getEstado(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void getTipo_habitacion(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
   
   
 }

@@ -43,8 +43,8 @@ public class fhabitacion {
                 registro[3]=rs.getString("descripcion");
                 registro[4]=rs.getString("caracteristicas");
                 registro[5]=rs.getString("precio_diario");
-                registro[6]=rs.getString("registro");
-                registro[7]=rs.getString("tipo_habitacion");
+              
+                registro[6]=rs.getString("tipo_habitacion");
                 
                 totalregistros=totalregistros+1;
                 
@@ -73,7 +73,7 @@ public class fhabitacion {
     totalregistros=0;
     modelo = new DefaultTableModel(null,titulos);
     
-    sSQL="select * from habitacion  where piso like '%"+ buscar + "%'and estado='Disponible' order by idhabitacion";
+    sSQL="select * from habitacion  where piso like '%"+ buscar + "%' and estado='Disponible' order by idhabitacion";
     
         try {
             Statement st= (Statement) cn.createStatement();
@@ -87,8 +87,7 @@ public class fhabitacion {
                 registro[3]=rs.getString("descripcion");
                 registro[4]=rs.getString("caracteristicas");
                 registro[5]=rs.getString("precio_diario");
-                registro[6]=rs.getString("registro");
-                registro[7]=rs.getString("tipo_habitacion");
+                registro[6]=rs.getString("tipo_habitacion");
                 
                 totalregistros=totalregistros+1;
                 

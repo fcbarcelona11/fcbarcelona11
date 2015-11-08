@@ -37,7 +37,7 @@ public class fpago {
     totalregistros=0;
     modelo = new DefaultTableModel(null,titulos);
     
-    sSQL="select * from pago  where idreserva="+ buscar + " order by idprago desc";
+    sSQL="select * from pago  where idreserva="+ buscar + " order by idpago desc";
     
         try {
             Statement st= (Statement) cn.createStatement();

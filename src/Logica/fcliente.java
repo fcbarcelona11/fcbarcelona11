@@ -73,7 +73,7 @@ public class fcliente {
 
     public boolean insertar(vcliente dts) {
         sSQL = "insert into persona (nombre,apaterno,amaterno,tipo_documento,num_documento,direccion,telefono,email) "
-                + "values (?,?,?,?,?,?,?,?)";
+                + "values (?,?,?,?,?,?,?)";
         sSQL2 = "insert into persona (idpersona,codigo_cliente)"
                 + "values (select idpersona from persona order by persona desc limit 1),?";
         try {

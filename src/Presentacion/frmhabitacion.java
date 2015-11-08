@@ -464,7 +464,7 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
         dts.setNumero(txtnumero.getText());
 
         int seleccionado=cbopiso.getSelectedIndex();
-        dts.getPiso((String) cbopiso.getItemAt(seleccionado));
+        dts.setPiso((String) cbopiso.getItemAt(seleccionado));
 
         dts.setDescripcion(txtdescripcion.getText());
         dts.setCaracteristicas(txtcaracteristicas.getText());
@@ -472,14 +472,14 @@ public class frmhabitacion extends javax.swing.JInternalFrame {
         dts.setPrecio_diario(Double.parseDouble(txtprecio_diario.getText()));
 
         seleccionado=cboestado.getSelectedIndex();
-        dts.getEstado((String) cboestado.getItemAt(seleccionado));
+        dts.setEstado((String) cboestado.getItemAt(seleccionado));
 
         seleccionado=cbotipo_habitacion.getSelectedIndex();
-        dts.getTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
+        dts.setTipo_habitacion((String) cbotipo_habitacion.getItemAt(seleccionado));
         
-        
+      
         if (accion.equals("guardar")) {
-       
+            
             if (func.insertar(dts)) {
                 JOptionPane.showMessageDialog(rootPane, "La habitación fue registrada satisfactoriamente");
                 mostrar("");
